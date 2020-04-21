@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Boolflix</title>
+  </head>
+  <body>
+
+    <!-- navbar ------------------------------------->
+    <nav>
+      <span class="logo">BOOLFLIX</span>
+      <span>
+        <input type="text" id="search">
+        <button type="button" id="button-cerca">Cerca</button>
+      </span>
+    </nav>
+    <!-- ul dove appendo i risultati ---------------->
+    <ul>
+
+    </ul>
+    <!-- template handlebar ----------------------------------------------------->
+    <script id="template-lista" type="text/x-handlebars-template">
+
+        <li>Titolo: {{titolo}}</li>
+        <li>Titolo originale: {{titoloOriginale}}</li>
+        <li>Lingua originale: {{linguaOriginale}}</li>
+        <li>Voto: {{voto}}</li>
+        <hr>
+
+    </script>
+
+
+    <!-- Include Handlebars from a CDN -->
+   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="main.js"></script>
+  </body>
+</html>
