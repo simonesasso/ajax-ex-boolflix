@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+  var lingue = ["en","it","es","fr","pt","ja"];
 // handlebars--------------
   var source = document.getElementById("template-lista").innerHTML;
   var template = Handlebars.compile(source);
@@ -9,6 +10,7 @@ $( document ).ready(function() {
    // ad ogni ricerca svuoto ul per non accumulare i risultati
    $("ul").html("");
    if (input != "") {
+     // chiamata per i film-------------------
      $.ajax({
       url: "https://api.themoviedb.org/3/search/movie/",
       method: "GET",
@@ -18,25 +20,100 @@ $( document ).ready(function() {
        query: input
       },
       success: function (data,stato) {
-       console.log(data);
-       var arrayrFilm = data.results;
-       for (var i = 0; i < arrayrFilm.length; i++) {
-         // handlebars---------------
-         var context = {
-           titolo: arrayrFilm[i].title,
-           titoloOriginale: arrayrFilm[i].original_title,
-           linguaOriginale: arrayrFilm[i].original_language,
-           voto: arrayrFilm[i].vote_average
-          };
-         var html = template(context);
-         $("ul").append(html);
-
-       }
+       var test = "film";
+       var arrayFilm = data.results;
+       generaOutput(arrayFilm,test);
      },
      error: function (richiesta,stato,errore) {
       alert("Si è verificato un errore", errore);
      }
     })
+    // chiamate per le serie tv---------------------
+    $.ajax({
+     url: "https://api.themoviedb.org/3/search/tv/",
+     method: "GET",
+     data: {
+      api_key: "2d88d072c44aeaea767ce1752df8aebd",
+      language: "it",
+      query: input
+     },
+     success: function (data,stato) {
+      console.log(data);
+      var test = "serie";
+      var arraySerie = data.results;
+      generaOutput(arraySerie,test);
+
+    },
+    error: function (richiesta,stato,errore) {
+     alert("Si è verificato un errore", errore);
+    }
+   })
    }
  })
+
+
+
+ function generaOutput(array,test) {
+
+   for (var i = 0; i < array.length; i++) {
+     if (test == "film") {
+       var nome = array[i].title;
+       var nomeOrig = array[i].original_title;
+
+     }else if (test == "serie") {
+       var nome = array[i].name;
+       var nomeOrig = array[i].original_name;
+
+     }
+     var voto = Math.round(array[i].vote_average / 2);
+     var linguaOriginale = array[i].original_language;
+
+     // aggiunta delle bandiere--------------
+       for (var k = 0; k < lingue.length; k++) {
+         if (lingue[k]==linguaOriginale) {
+           linguaOriginale = "<img src=" + "immagini/" + lingue[k]  + ".png" + " alt='img'>"
+         }
+       }
+
+     // handlebars---------------
+     var context = {
+       titolo: nome,
+       titoloOriginale: nomeOrig,
+       linguaOriginale: linguaOriginale
+     };
+
+
+     var html = template(context);
+     $("ul").append(html);
+
+     // aggiunta delle stelline-----------------------------
+      $(".li-voto").each(function () {
+       if (!$(this).hasClass("active")) {
+         for (var j = 0; j < voto; j++) {
+          $(this).append("&starf;");
+         }
+         if (voto<5) {
+           var numStelleVuote = 5 - voto;
+           for (var z = 0; z < numStelleVuote; z++) {
+            $(this).append("&star;");
+           }
+         }
+         $(this).addClass("active");
+       }
+      })
+
+     }
+
+   }
+
+
+
+
+
+
+
+
+
+
+
 })
