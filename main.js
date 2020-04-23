@@ -65,13 +65,13 @@ $( document ).ready(function() {
        var nomeOrig = array[i].original_name;
 
      }
-     var voto = Math.round(array[i].vote_average / 2);
+     var voto = Math.ceil(array[i].vote_average / 2);
      var linguaOriginale = array[i].original_language;
 
      // aggiunta delle bandiere--------------
        for (var k = 0; k < lingue.length; k++) {
          if (lingue[k]==linguaOriginale) {
-           linguaOriginale = "<img src=" + "immagini/" + lingue[k]  + ".png" + " alt='img'>"
+           linguaOriginale = "<img src=immagini/" + lingue[k]  + ".png alt='img'>"
          }
        }
 
@@ -79,35 +79,48 @@ $( document ).ready(function() {
      var context = {
        titolo: nome,
        titoloOriginale: nomeOrig,
-       linguaOriginale: linguaOriginale
+       linguaOriginale: linguaOriginale,
+       voto: stelle(voto),
+       tipo: test
      };
 
 
      var html = template(context);
      $("ul").append(html);
 
-     // aggiunta delle stelline-----------------------------
-      $(".li-voto").each(function () {
-       if (!$(this).hasClass("active")) {
-         for (var j = 0; j < voto; j++) {
-          $(this).append("&starf;");
-         }
-         if (voto<5) {
-           var numStelleVuote = 5 - voto;
-           for (var z = 0; z < numStelleVuote; z++) {
-            $(this).append("&star;");
-           }
-         }
-         $(this).addClass("active");
-       }
-      })
+     // aggiunta delle stelline modo piu grezzo-----------------------------
+      // $(".li-voto").each(function () {
+      //  if (!$(this).hasClass("active")) {
+      //    for (var j = 0; j < voto; j++) {
+      //     $(this).append("&starf;");
+      //    }
+      //    if (voto<5) {
+      //      var numStelleVuote = 5 - voto;
+      //      for (var z = 0; z < numStelleVuote; z++) {
+      //       $(this).append("&star;");
+      //      }
+      //    }
+      //    $(this).addClass("active");
+      //  }
+      // })
 
      }
 
    }
 
-
-
+ function stelle(voto) {
+  var stelline = "";
+  for (var j = 0; j < voto; j++) {
+   stelline +="&starf;";
+  }
+  if (voto<5) {
+    var numStelleVuote = 5 - voto;
+    for (var z = 0; z < numStelleVuote; z++) {
+     stelline += "&star;";
+    }
+ }
+ return stelline
+}
 
 
 
