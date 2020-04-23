@@ -15,8 +15,25 @@ nav{
   color: red;
   font-size: 30px;
 }
-img{
+.bandiere{
   width: 15px;
   height: auto;
+}
 
+.posterimg{
+  width: 150px;
+  height: 200px;
+}
+.container{
+  width: 100%;
+}
+ul{
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+li{
+  width: calc((100% - 200px) / 5);
+  text-align: center;
 }

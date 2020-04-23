@@ -71,12 +71,13 @@ $( document ).ready(function() {
      // aggiunta delle bandiere--------------
        for (var k = 0; k < lingue.length; k++) {
          if (lingue[k]==linguaOriginale) {
-           linguaOriginale = "<img src=immagini/" + lingue[k]  + ".png alt='img'>"
+           linguaOriginale = "<img src=immagini/" + lingue[k]  + ".png class='bandiere' alt='img'>"
          }
        }
 
      // handlebars---------------
      var context = {
+       immagine: locandina(array[i].poster_path),
        titolo: nome,
        titoloOriginale: nomeOrig,
        linguaOriginale: linguaOriginale,
@@ -122,7 +123,16 @@ $( document ).ready(function() {
  return stelline
 }
 
+function locandina(posterpath) {
+  var poster = "";
+  if (posterpath==null) {
+    poster = '<img src="immagini/altimg.jpg"  class="posterimg" alt="img">';
+  }else {
 
+    poster = '<img src="https://image.tmdb.org/t/p/w300' + posterpath + ' " class="posterimg" alt="img">';
+  }
+  return poster
+}
 
 
 

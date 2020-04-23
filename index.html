@@ -18,18 +18,23 @@
       </span>
     </nav>
     <!-- ul dove appendo i risultati ---------------->
-    <ul>
+    <div class="container">
+      <ul>
 
-    </ul>
+      </ul>
+    </div>
+
     <!-- template handlebar ----------------------------------------------------->
     <script id="template-lista" type="text/x-handlebars-template">
 
-        <li>Titolo: {{titolo}}</li>
-        <li>Titolo originale: {{titoloOriginale}}</li>
-        <li>Lingua originale: {{{linguaOriginale}}}</li>
-        <li>Voto:{{{voto}}}</li>
-        <li>Tipo:{{tipo}}</li>
-        <hr>
+      <li>
+        <div>{{{immagine}}}</div>
+        <h4>Titolo: {{titolo}}</h4>
+        <h6>Titolo originale: {{titoloOriginale}}</h6>
+        <div>Lingua originale: {{{linguaOriginale}}}</div>
+        <h6>Voto:{{{voto}}}</h6>
+        <h6>Tipo:{{tipo}}</h6>
+      </li>
     </script>
 
 
