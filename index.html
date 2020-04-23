@@ -28,12 +28,17 @@
     <script id="template-lista" type="text/x-handlebars-template">
 
       <li>
-        <div>{{{immagine}}}</div>
-        <h4>Titolo: {{titolo}}</h4>
-        <h6>Titolo originale: {{titoloOriginale}}</h6>
-        <div>Lingua originale: {{{linguaOriginale}}}</div>
-        <h6>Voto:{{{voto}}}</h6>
-        <h6>Tipo:{{tipo}}</h6>
+        <div class="container-locandina">
+          <div class="div-img">{{{immagine}}}</div>
+          <div class="retrocover">
+           <h4>Titolo: {{titolo}}</h4>
+           <h6>Titolo originale: {{titoloOriginale}}</h6>
+           <div>Lingua originale: {{{linguaOriginale}}}</div>
+           <h4>Voto:{{{voto}}}</h4>
+           <h6>Tipo:{{tipo}}</h6>
+          </div>
+        </div>
+
       </li>
     </script>
 

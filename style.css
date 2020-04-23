@@ -19,10 +19,12 @@ nav{
   width: 15px;
   height: auto;
 }
-
+.container-locandina{
+  height: 250px;
+}
 .posterimg{
-  width: 150px;
-  height: 200px;
+  width: 100%;
+  height: 250px;
 }
 .container{
   width: 100%;
@@ -36,4 +38,16 @@ ul{
 li{
   width: calc((100% - 200px) / 5);
   text-align: center;
+}
+li:hover .retrocover{
+  display: block;
+}
+li:hover .div-img{
+  display: none;
+}
+.retrocover{
+  display: none;
+  background-color: black;
+  color: white;
+  height: 100%;
 }

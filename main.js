@@ -129,7 +129,7 @@ function locandina(posterpath) {
     poster = '<img src="immagini/altimg.jpg"  class="posterimg" alt="img">';
   }else {
 
-    poster = '<img src="https://image.tmdb.org/t/p/w300' + posterpath + ' " class="posterimg" alt="img">';
+    poster = '<img src="https://image.tmdb.org/t/p/w342' + posterpath + ' " class="posterimg"  alt="img">';
   }
   return poster
 }
